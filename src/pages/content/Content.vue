@@ -54,6 +54,7 @@ export default {
 .crumbs-box {
   position: relative;
 }
+//定位面包屑
 .crumbs-box1 {
   position: absolute;
   left: 25px;

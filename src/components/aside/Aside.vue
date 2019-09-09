@@ -18,19 +18,31 @@
         :key="index"
       >
         <i :class="item.image"></i>
+        <img
+          src="../../images/dot.png"
+          alt=""
+          class="aside-dot"
+          v-if="item.boolean === true && isCollapse === true"
+        />
         <span slot="title"
           >{{ item.name
           }}<span v-if="item.boolean === true" class="newStyle">new</span></span
         >
       </el-menu-item>
       <el-submenu
-        :index="String(index)"
+        :index="String(index + 6)"
         v-for="(item, index) in asideArr"
         v-show="index === 3"
-        :key="index"
+        :key="item.id"
       >
         <template slot="title">
           <i :class="item.image"></i>
+          <img
+            src="../../images/dot.png"
+            alt=""
+            class="aside-dot"
+            v-if="item.boolean === true && isCollapse === true"
+          />
           <span slot="title">{{ item.name }}</span>
           <span v-if="item.boolean === true" class="newStyle">new</span>
         </template>
@@ -43,13 +55,19 @@
         </el-menu-item-group>
       </el-submenu>
       <el-submenu
-        :index="String(index)"
+        :index="String(index + 11)"
         v-for="(item, index) in asideArr"
         v-show="index === 4"
-        :key="index"
+        :key="item.num"
       >
         <template slot="title">
           <i :class="item.image"></i>
+          <img
+            src="../../images/dot.png"
+            alt=""
+            class="aside-dot"
+            v-if="item.boolean === true && isCollapse === true"
+          />
           <span slot="title">{{ item.name }}</span>
           <span v-if="item.boolean === true" class="newStyle">new</span>
         </template>
@@ -59,7 +77,7 @@
           >
         </el-menu-item-group>
       </el-submenu>
-      <el-dialog title="通知" :visible="dialogVisible" width="30%">
+      <el-dialog title="更新提示" :visible="dialogVisible" width="30%">
         <div v-for="(item2, index2) in text1" :key="index2">
           <div v-if="item2 !== ''">
             <span>{{ index2 + 1 }}、</span>
@@ -83,24 +101,35 @@ export default {
   props: {},
   data() {
     return {
+      //id、num 再循环的时候为了key值不一样
       asideArr: [
         {
+          id: 6,
+          num: 11,
           name: "首页",
           image: "el-icon-location"
         },
         {
+          id: 7,
+          num: 12,
           name: "日程管理",
           image: "el-icon-date"
         },
         {
+          id: 8,
+          num: 13,
           name: "通讯录",
           image: "el-icon-document"
         },
         {
+          id: 9,
+          num: 14,
           name: "组织员工",
           image: "el-icon-user"
         },
         {
+          id: 10,
+          num: 15,
           name: "表单页",
           image: "el-icon-files"
         }
@@ -221,5 +250,10 @@ export default {
   color: red;
   vertical-align: bottom;
   font-style: oblique;
+}
+/*圆点*/
+.aside-dot {
+  height: 15px;
+  width: 15px;
 }
 </style>

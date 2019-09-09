@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const DynamicSchema = new Schema({
   // 发布人
@@ -27,6 +27,6 @@ const DynamicSchema = new Schema({
   reportUsers: {
     type: Array
   }
-})
+});
 
-module.exports = User = mongoose.model('Dynamic', DynamicSchema)
+module.exports = User = mongoose.model("Dynamic", DynamicSchema);

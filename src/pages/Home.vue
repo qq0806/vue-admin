@@ -63,6 +63,7 @@
       </div>
     </div>
     <CityDynamic></CityDynamic>
+    <Network></Network>
   </div>
 </template>
 
@@ -70,12 +71,14 @@
 import countTo from "vue-count-to";
 import CircleProgress from "../components/circleChart/Circle-progress";
 import CityDynamic from "../components/cityDynamic/CityDynamic";
+import Network from "../components/network/Network";
 export default {
   name: "home",
   components: {
-    countTo,
-    CircleProgress,
-    CityDynamic
+    countTo, //计数器
+    CircleProgress, //圆形进度条
+    CityDynamic, //词云图、个人动态
+    Network //问卷调查
   },
   props: {},
   data() {

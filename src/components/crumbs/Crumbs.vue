@@ -62,9 +62,9 @@ export default {
         // }
         this.routeName = val.matched[0].meta.title;
         this.routePath = val.matched[1].path;
-        console.log(this.routeName);
-        console.log(this.routePath);
-        console.log(val);
+        // console.log(this.routeName);
+        // console.log(this.routePath);
+        // console.log(val);
       },
       // 深度观察监听
       deep: true

@@ -35,3 +35,29 @@ Mock.mock("api/city", "get", {
     }
   ]
 });
+
+//汇报人数据
+Mock.mock("api/reporter", "get", {
+  code: 200,
+  msg: "success",
+  "data|20": [
+    {
+      name: "@cword(3, 4)"
+    }
+  ]
+});
+//获取网站问卷调查数据
+Mock.mock("api/website", "get", {
+  code: 200,
+  msg: "success",
+  "data|30": [
+    {
+      title: "@cword(2, 4)",
+      content: "@cword(2, 5)",
+      creationTime: "@date()",
+      deadline: "@date",
+      "topic|1": ["未发布", "已发布", "已截止"],
+      "websiteName|1": ["百度", "豆瓣", "掘金", "Github"]
+    }
+  ]
+});
