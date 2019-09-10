@@ -138,7 +138,7 @@ export default {
       dialogFormVisible: false, //弹出框的显示、隐藏
       formLabelWidth: "120px",
       region: "", //动态的类型
-      textarea: "", //提示框详细内容
+      textarea: "", //动态的详细内容
       reporter: [], //汇报人初始值
       reporterData: [], //汇报人数据
       reportShow: false, //汇报人的选择框显示、隐藏
@@ -190,37 +190,42 @@ export default {
       // console.log(this.textarea);
       // console.log(this.users.username);
       // console.log(this.releaseTime);
-      this.$axios
-        .req("api/addDynamic", {
-          username: this.users.username,
-          date: this.releaseTime,
-          dynamic: this.textarea,
-          classification: this.region,
-          reportUsers: this.reporter
-        })
-        .then(res => {
-          if (res.code === 200) {
-            this.dialogFormVisible = false;
-            this.region = "";
-            this.reporter = [];
-            this.textarea = "";
-            this.getDynamicData(); //获取回报数据
-            this.$message({
-              showClose: true,
-              message: "添加成功",
-              type: "success"
-            });
-          } else if (res.code === 500) {
-            this.$message({
-              showClose: true,
-              message: "添加失败",
-              type: "error"
-            });
-          }
-        })
-        .catch(e => {
-          console.log(e);
+      if (this.textarea === "") {
+        this.$message({
+          message: "动态内容不能为空",
+          type: "error"
         });
+      } else {
+        this.$axios
+          .req("api/addDynamic", {
+            username: this.users.username,
+            date: this.releaseTime,
+            dynamic: this.textarea,
+            classification: this.region,
+            reportUsers: this.reporter
+          })
+          .then(res => {
+            if (res.code === 200) {
+              this.dialogFormVisible = false;
+              this.region = "";
+              this.reporter = [];
+              this.textarea = "";
+              this.getDynamicData(); //获取回报数据
+              this.$message({
+                message: "添加成功",
+                type: "success"
+              });
+            } else if (res.code === 500) {
+              this.$message({
+                message: "添加失败",
+                type: "error"
+              });
+            }
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      }
     },
     // 获取汇报数据
     getDynamicData() {

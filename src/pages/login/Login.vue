@@ -116,7 +116,6 @@ export default {
         .then(res => {
           if (res.code === 200) {
             this.$message({
-              showClose: true,
               message: "登录成功",
               type: "success"
             });
@@ -124,7 +123,6 @@ export default {
             this.$router.push("/");
           } else if (res.code === 500) {
             this.$message({
-              showClose: true,
               message: "用户不存在",
               type: "error"
             });

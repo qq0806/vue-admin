@@ -9,12 +9,13 @@ import moment from "dayjs";
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import VCharts from "v-charts";
+import clipboard from "clipboard";
 
 Vue.use(VCharts);
 Vue.use(ElementUI);
 Vue.prototype.$axios = http;
 Vue.prototype.$moment = moment;
-
+Vue.prototype.clipboard = clipboard; //复制插件
 Vue.config.productionTip = false;
 
 // 处理响应超时时间

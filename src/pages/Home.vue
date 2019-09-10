@@ -41,7 +41,6 @@
               <div>完成率</div>
             </div>
           </div>
-
           <circle-progress
             v-show="item.isShow === false"
             key="animation-Model2"
