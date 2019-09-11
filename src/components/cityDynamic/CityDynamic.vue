@@ -212,12 +212,12 @@ export default {
               this.textarea = "";
               this.getDynamicData(); //获取回报数据
               this.$message({
-                message: "添加成功",
+                message: "添加动态成功",
                 type: "success"
               });
             } else if (res.code === 500) {
               this.$message({
-                message: "添加失败",
+                message: "添加动态失败",
                 type: "error"
               });
             }
@@ -240,6 +240,18 @@ export default {
               );
               item.releaseTime1 = this.$moment(item.date).format("YYYY-MM-DD");
             });
+            let num = 0;
+            this.reportData.forEach(item => {
+              if (item.releaseTime1 === this.timeDate) {
+                num++;
+              }
+              return num;
+            });
+            if (num === 0) {
+              this.noShow = true;
+            } else {
+              this.noShow = false;
+            }
           }
         })
         .catch(e => {

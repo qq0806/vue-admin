@@ -88,6 +88,48 @@ export default new Router({
       meta: {
         title: "offer管理"
       }
+    },
+    {
+      path: "/category",
+      name: "category",
+      component: Content,
+      children: [
+        {
+          path: "personnel",
+          component: () => import("../pages/Personnel.vue")
+        }
+      ],
+      meta: {
+        title: "人员信息"
+      }
+    },
+    {
+      path: "/category",
+      name: "category",
+      component: Content,
+      children: [
+        {
+          path: "pay",
+          component: () => import("../pages/Pay.vue")
+        }
+      ],
+      meta: {
+        title: "薪酬管理"
+      }
+    },
+    {
+      path: "/category",
+      name: "category",
+      component: Content,
+      children: [
+        {
+          path: "form",
+          component: () => import("../pages/Form.vue")
+        }
+      ],
+      meta: {
+        title: "分布表单"
+      }
     }
   ]
 });

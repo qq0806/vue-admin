@@ -1,31 +1,33 @@
 <template>
-  <div class="header-box">
-    <div class="header-title-name">晓晓后台管理系统</div>
-    <div class="header-user-box">
-      <el-dropdown placement="bottom">
-        <img
-          src="../../images/Typeface.png"
-          alt=""
-          class="header-Typeface-img"
-        />
-        <el-dropdown-menu slot="dropdown">
-          <div v-for="(item, index) in TypefaceData" :key="index">
-            <el-dropdown-item>{{ item.name }}</el-dropdown-item>
-          </div>
-        </el-dropdown-menu>
-      </el-dropdown>
-      <img src="../../images/header.jpg" alt="" class="header-img" />
-      <el-dropdown>
-        <span class="el-dropdown-link">
-          亲爱的:{{ user.username
-          }}<i class="el-icon-caret-bottom el-icon--right"></i>
-        </span>
-        <el-dropdown-menu slot="dropdown">
-          <div v-for="(item1, index1) in downData" :key="index1">
-            <el-dropdown-item>{{ item1.name }}</el-dropdown-item>
-          </div>
-        </el-dropdown-menu>
-      </el-dropdown>
+  <div id="header">
+    <div class="header-box">
+      <div class="header-title-name">晓晓后台管理系统</div>
+      <div class="header-user-box">
+        <el-dropdown placement="bottom">
+          <img
+            src="../../images/Typeface.png"
+            alt=""
+            class="header-Typeface-img"
+          />
+          <el-dropdown-menu slot="dropdown">
+            <div v-for="(item, index) in TypefaceData" :key="index">
+              <el-dropdown-item>{{ item.name }}</el-dropdown-item>
+            </div>
+          </el-dropdown-menu>
+        </el-dropdown>
+        <img src="../../images/header.jpg" alt="" class="header-img" />
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            亲爱的:{{ user.username
+            }}<i class="el-icon-caret-bottom el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <div v-for="(item1, index1) in downData" :key="index1">
+              <el-dropdown-item>{{ item1.name }}</el-dropdown-item>
+            </div>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
     </div>
   </div>
 </template>
@@ -75,9 +77,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
+/*#header {*/
+/*  height: 60px;*/
+/*  width: 100%;*/
+/*  position: fixed;*/
+/*  top: 0px;*/
+/*  background-color: #2e5e85;*/
+/*  z-index: 1000;*/
+/*}*/
 /*头部*/
 .header-box {
-  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -104,6 +113,7 @@ export default {
 .header-user-box {
   display: flex;
   align-items: center;
+  margin-right: 20px;
 }
 .el-dropdown-link {
   cursor: pointer;

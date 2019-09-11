@@ -5,20 +5,21 @@
     </div>
     <div class="content-box">
       <el-table :data="websiteData" style="width: 100%">
-        <el-table-column prop="title" label="问卷名称" width="180">
+        <el-table-column prop="title" label="问卷名称" width="180" align="center">
         </el-table-column>
-        <el-table-column prop="content" label="问卷描述" width="180">
+        <el-table-column prop="content" label="问卷描述" width="180" align="center">
         </el-table-column>
         <el-table-column
           prop="creationTime"
           label="创建时间"
           sortable
           width="180"
+          align="center"
         >
         </el-table-column>
-        <el-table-column prop="deadline" label="截止时间" sortable width="180">
+        <el-table-column prop="deadline" label="截止时间" sortable width="180" align="center">
         </el-table-column>
-        <el-table-column prop="topic" label="问卷主题" width="180">
+        <el-table-column prop="topic" label="问卷主题" width="180" align="center">
           <template slot-scope="scope">
             <el-tag type="primary" disable-transitions>{{
               scope.row.topic
@@ -30,6 +31,7 @@
           label="网站名称"
           width="180"
           filter-placement="bottom-end"
+          align="center"
         >
           <template slot-scope="scope">
             <el-tag
@@ -58,7 +60,7 @@
             >
           </template>
         </el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <el-button size="small" type="primary" @click="seeClick(scope)"
               >查看网站详情</el-button

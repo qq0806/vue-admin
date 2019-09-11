@@ -5,9 +5,6 @@
       class="el-menu-vertical-demo"
       @open="handleOpen"
       @close="handleClose"
-      background-color="#545c64"
-      text-color="#fff"
-      active-text-color="#ffd04b"
       :collapse="isCollapse"
     >
       <el-menu-item
@@ -184,6 +181,10 @@ export default {
       }
       if (index1 === 0) {
         this.$router.push("/category/offer");
+      } else if (index1 === 1) {
+        this.$router.push("/category/personnel");
+      } else if (index1 === 2) {
+        this.$router.push("/category/pay");
       }
     },
     //分布表单，显示新通知的内容
@@ -191,6 +192,7 @@ export default {
       if (item.boolean === true) {
         this.dialogVisible = true;
         this.text1 = item.text;
+        this.$router.push("/category/form");
       }
     }
   },
