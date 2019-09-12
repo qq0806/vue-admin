@@ -47,7 +47,12 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
+* {
+  padding: 0px;
+  margin: 0px;
+}
+@import "../../style/common";
 .el-main {
   padding: 0px;
 }

@@ -154,9 +154,9 @@ export default {
       currentPage: 1,
       personnelData: [], //人员信息渲染页面数据
       personnelData1: [], //全部人员数据
-      personnelData2: [], //考核中人员的数据
-      personnelData3: [], //已转正人员的数据
-      personnelData4: [], //除已转正人员的数据
+      // personnelData2: [], //考核中人员的数据
+      // personnelData3: [], //已转正人员的数据
+      // personnelData4: [], //除已转正人员的数据
       multipleSelection: []
     };
   },
@@ -175,25 +175,39 @@ export default {
           if (res) {
             this.personnelData = res.data;
             this.personnelData1 = res.data;
-            // res.data.forEach(item => {
-            //   if (item.state === "审批中") {
-            //     this.personnelData2.push(item);
-            //   } else if (item.state === "审批通过") {
-            //     this.personnelData3.push(item);
-            //   } else if (item.state !== "审批通过") {
-            //     this.personnelData4.push(item);
-            //   }
-            // });
           }
         })
         .catch(e => {
           console.log(e);
         });
     },
-    determine() {},
+    // 确定按钮
+    determine() {
+      if (this.multipleSelection.length === 0) {
+        this.$message({
+          message: "最少选择一条信息",
+          type: "warning"
+        });
+      } else {
+        this.multipleSelection.map(item => {
+          return (item.state = "审批通过");
+        });
+        let statusName = "审批通过";
+        let arr = this.personnelData1.filter(item => {
+          return JSON.stringify(item).indexOf(statusName) === -1;
+          // console.log(JSON.stringify(item).indexOf(statusName));
+        });
+        this.personnelData = arr;
+        this.showButton = false;
+        this.$message({
+          message: "操作成功",
+          type: "success"
+        });
+      }
+    },
+    // 选择框
     handleSelectionChange(val) {
       this.multipleSelection = val;
-      console.log(val);
     },
     // 全部员工按钮
     personnelAll() {
@@ -201,16 +215,28 @@ export default {
     },
     // 审核中按钮
     examination() {
-      this.personnelData = this.personnelData2;
+      let statusName = "审批中";
+      let arr = this.personnelData1.filter(item => {
+        return JSON.stringify(item).indexOf(statusName) !== -1;
+      });
+      this.personnelData = arr;
     },
     // 转正按钮
     adopt() {
-      this.personnelData = this.personnelData3;
+      let statusName = "审批通过";
+      let arr = this.personnelData1.filter(item => {
+        return JSON.stringify(item).indexOf(statusName) !== -1;
+      });
+      this.personnelData = arr;
     },
     //批量转正
     batch() {
       this.showButton = true;
-      this.personnelData = this.personnelData4;
+      let statusName = "审批通过";
+      let arr = this.personnelData1.filter(item => {
+        return JSON.stringify(item).indexOf(statusName) === -1;
+      });
+      this.personnelData = arr;
     }
   },
   mounted() {

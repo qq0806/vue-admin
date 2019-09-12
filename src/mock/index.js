@@ -170,3 +170,21 @@ Mock.mock("api/personnel", "get", {
     }
   ]
 });
+
+// 薪酬管理数据
+Mock.mock("api/pay", "get", {
+  code: 200,
+  msg: "success",
+  "data|3": [
+    {
+      title: "@cword(3, 5)",
+      plan: "@integer(10000,1000000)",
+      actual: "@integer(10000,1000000)",
+      lastActual: "@integer(10000,1000000)",
+      LastPlan: "@integer(10000,1000000)",
+      isInput1: false,
+      isInput2: false,
+      isInput3: false
+    }
+  ]
+});
