@@ -42,7 +42,7 @@ Mock.mock("api/reporter", "get", {
   msg: "success",
   "data|20": [
     {
-      name: "@cword(3, 4)"
+      name: "@cname(2, 4)"
     }
   ]
 });
@@ -114,8 +114,8 @@ Mock.mock("api/mailListData", "get", {
       name: "@cname",
       img: "@dataImage(80x80)",
       backgroundColor: "@color",
-      phone: /\d{3}-\d{8}|\d{4}-\d{7}/,
-      tel: /^1([38]\d|5[0-35-9]|7[3678])\d{8}$/,
+      phone: /^1([38]\d|5[0-35-9]|7[3678])\d{8}$/,
+      tel: /\d{3}-\d{8}|\d{4}-\d{7}/,
       email: /[1-9]\d{7,10}@(qq|163|gmail)\.com/,
       qq: /^[1-9][0-9]{4,10}$/,
       gender: () => {
@@ -144,6 +144,109 @@ Mock.mock("api/mailListData", "get", {
           color: "@color()"
         }
       ]
+    }
+  ]
+});
+//offer数据
+let educationArr = ["初中", "高中", "大专", "本科", "硕士", "博士", "博士后"];
+let famousRaceArr = [
+  "汉族",
+  "壮族",
+  "回族",
+  "满族",
+  "维吾尔族",
+  "苗族",
+  "彝族",
+  "土家族",
+  "藏族",
+  "蒙古族",
+  "侗族",
+  "布依族",
+  "瑶族",
+  "白族",
+  "朝鲜族",
+  "哈尼族",
+  "黎族",
+  "哈萨克族",
+  "傣族",
+  "畲族",
+  "傈僳族",
+  "东乡族",
+  "仡佬族",
+  "拉祜族",
+  "佤族",
+  "水族",
+  "纳西族",
+  "羌族",
+  "土族",
+  "仫佬族",
+  "锡伯族",
+  "柯尔克孜族",
+  "景颇族",
+  "达斡尔族",
+  "撒拉族",
+  "布朗族",
+  "毛南族",
+  "塔吉克族",
+  "普米族",
+  "阿昌族",
+  "怒族",
+  "鄂温克族",
+  "京族",
+  "基诺族",
+  "德昂族",
+  "保安族",
+  "俄罗斯族",
+  "裕固族",
+  "乌孜别克族",
+  "门巴族",
+  "鄂伦春族",
+  "独龙族",
+  "赫哲族",
+  "高山族",
+  "珞巴族",
+  "塔塔尔族"
+];
+Mock.mock("api/offerData", "get", {
+  code: 200,
+  msg: "success",
+  "data|200": [
+    {
+      _id: "@increment(1)",
+      name: "@cname",
+      phone: /^1([38]\d|5[0-35-9]|7[3678])\d{8}$/,
+      tel: /\d{3}-\d{8}|\d{4}-\d{7}/,
+      email: /[1-9]\d{7,10}@(qq|163|gmail)\.com/,
+      QQ: /^[1-9][0-9]{4,10}$/,
+      gender: () => {
+        let num = parseInt(Math.random() * genderArr.length);
+        return genderArr[num];
+      }, //性别
+      region: () => {
+        let num = parseInt(Math.random() * regionArr.length);
+        return regionArr[num];
+      }, //部门
+      position: () => {
+        let num = parseInt(Math.random() * positionArr.length);
+        return positionArr[num];
+      }, //职位
+      nativePlace: "@province", //籍贯
+      "marriage|1": ["已婚", "未婚"],
+      documentType: "@cword(2,4)", //证件类型
+      documentNum: "@id", //证件号码
+      dateOfBirth: "@date()", //出生日期
+      "approval|1": ["代发", "已发", "已接受", "已拒绝", "已入职"], //审批状态
+      age: "@natural(20, 50)",
+      education: () => {
+        let num = parseInt(Math.random() * educationArr.length);
+        return educationArr[num];
+      }, //学历
+      entry: "@date()", //入职日期
+      famousRace: () => {
+        let num = parseInt(Math.random() * famousRaceArr.length);
+        return famousRaceArr[num];
+      }, //名族
+      city: "@city()"
     }
   ]
 });

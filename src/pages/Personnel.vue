@@ -66,10 +66,10 @@
             personnelData.slice((currentPage - 1) * num, currentPage * num)
           "
           tooltip-effect="dark"
-          style="width: 100%"
+          style="width: 98%"
           @selection-change="handleSelectionChange"
         >
-          <el-table-column type="selection" width="55" align="center">
+          <el-table-column type="selection" align="center">
           </el-table-column>
           <el-table-column prop="name" label="姓名" width="100" align="center">
           </el-table-column>
@@ -84,29 +84,28 @@
           <el-table-column
             prop="mechanism"
             label="机构"
-            width="150"
+            width="100"
             align="center"
           >
           </el-table-column>
           <el-table-column
             prop="region"
             label="部门"
-            width="180"
             align="center"
           >
           </el-table-column>
           <el-table-column
             prop="startTime"
             label="试用期开始时间"
-            width="180"
             sortable
+            width="150 "
             align="center"
           >
           </el-table-column>
           <el-table-column
             prop="endTime"
             label="试用期结束时间"
-            width="180"
+            width="150"
             sortable
             align="center"
           >
@@ -114,7 +113,6 @@
           <el-table-column
             prop="state"
             label="转正审批状态"
-            width="180"
             align="center"
           >
           </el-table-column>

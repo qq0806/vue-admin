@@ -192,8 +192,8 @@ export default {
       if (item.boolean === true) {
         this.dialogVisible = true;
         this.text1 = item.text;
-        this.$router.push("/category/form");
       }
+      this.$router.push("/category/stepForm");
     }
   },
   mounted() {

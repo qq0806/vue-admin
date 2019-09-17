@@ -2,13 +2,13 @@
   <div class="Crumbs-box">
     <i
       class="el-icon-s-fold"
-      style="color: white;background-color: gray;margin-right: 5px"
+      style="color: white;background-color: gray;margin-right: 5px;font-size: 20px"
       v-if="isCollapse === false"
       @click="leftClick"
     ></i>
     <i
       class="el-icon-s-unfold"
-      style="color: white;background-color: gray;margin-right: 5px"
+      style="color: white;background-color: gray;margin-right: 5px;font-size: 20px"
       v-else-if="isCollapse === true"
       @click="rightClick"
     ></i>

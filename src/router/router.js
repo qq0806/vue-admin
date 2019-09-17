@@ -5,7 +5,7 @@ import Home from "../pages/Home.vue";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
@@ -123,13 +123,37 @@ export default new Router({
       component: Content,
       children: [
         {
-          path: "form",
-          component: () => import("../pages/Form.vue")
+          path: "stepForm",
+          component: () => import("../pages/StepForm.vue")
         }
       ],
       meta: {
         title: "分布表单"
       }
+    },
+    {
+      path: "/printing",
+      name: "printing",
+      component: () => import("../pages/Printing.vue"),
+      meta: {
+        title: "打印"
+      }
     }
   ]
 });
+router.beforeEach((to, from, next) => {
+  let user = localStorage.getItem("user");
+  if (user) {
+    next();
+  } else if (
+    to.path === "/login" ||
+    to.path === "/register" ||
+    to.path === "/retrieve"
+  ) {
+    next();
+  } else {
+    next("/login");
+  }
+  // if ()
+});
+export default router;

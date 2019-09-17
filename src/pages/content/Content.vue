@@ -7,7 +7,7 @@
       <el-header style="padding: 0">
         <Header></Header>
       </el-header>
-      <el-container>
+      <el-container class="home_el_style">
         <el-aside :width="widthShow">
           <Aside></Aside>
         </el-aside>
@@ -62,8 +62,8 @@ export default {
 //定位面包屑
 .crumbs-box1 {
   position: absolute;
-  left: 25px;
-  top: 35px;
+  left: 45px;
+  top: 45px;
   z-index: 1000;
 }
 </style>

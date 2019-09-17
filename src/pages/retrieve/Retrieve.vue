@@ -124,6 +124,7 @@ export default {
 .Retrieve-content-title {
   width: 100%;
   text-align: center;
+  margin: 20px 0px;
 }
 /*找回密码的内容*/
 .Retrieve-content-box {

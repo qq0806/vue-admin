@@ -205,6 +205,7 @@ export default {
 .register-content-title {
   width: 100%;
   text-align: center;
+  margin: 20px 0px;
 }
 /*登录内容*/
 .register-content-box {

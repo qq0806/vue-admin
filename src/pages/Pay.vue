@@ -37,7 +37,7 @@
           border
           :summary-method="getSummaries"
           show-summary
-          style="width: 100%; margin-top: 20px"
+          style="width: 98%"
         >
           <el-table-column prop="title" label="薪资构成" align="center">
             <template slot-scope="scope">
@@ -337,7 +337,7 @@ export default {
 }
 /*月份选择的内容*/
 .pay-content-box2 {
-  width: 95%;
+  width: 98%;
   height: 80px;
   background-color: white;
   margin-top: 25px;
@@ -359,7 +359,7 @@ export default {
 }
 /*提示*/
 .pay-content-tips {
-  width: 95%;
+  width: 98%;
   height: 60px;
   line-height: 60px;
   background-color: #e7f4e3;

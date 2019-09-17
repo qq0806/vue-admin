@@ -226,7 +226,7 @@ export default {
 /*home的水平线*/
 .home-hr {
   position: absolute;
-  top: -8px;
+  top: 0px;
   height: 6px;
   width: 100%;
   border: 0px;

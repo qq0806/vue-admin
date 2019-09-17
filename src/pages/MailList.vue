@@ -17,9 +17,8 @@
           :key="item.id"
           class="mailListData-loop-box"
         >
-          <el-card>
+          <el-card class="box-card">
             <div class="mailListData-loop-box1">
-              <!--              <img :src="item.img" alt="" class="mailListData-loop-img" />-->
               <div
                 class="mailListData-loop-img"
                 :style="'backgroundColor:' + item.backgroundColor"
@@ -42,7 +41,6 @@
                       {{ item1.teg }}
                     </div>
                   </div>
-
                   <div v-if="item.label.length === 0" class="label-Tips">
                     <i class="el-icon-circle-plus-outline"></i>
                     快来给他添加一个标签吧
@@ -62,14 +60,16 @@
         <div v-if="mailListData.length === 0" class="mailList-tips">
           暂无数据
         </div>
-        <paging
-          @handleSizeChange="handleSizeChange"
-          @handleCurrentChange="handleCurrentChange"
-          :arrData="mailListData"
-          :pageSizesArr="pageSizesArr1"
-          :pageSize="num"
-        ></paging>
       </div>
+    </div>
+    <div class="paging-box">
+      <paging
+        @handleSizeChange="handleSizeChange"
+        @handleCurrentChange="handleCurrentChange"
+        :arrData="mailListData"
+        :pageSizesArr="pageSizesArr1"
+        :pageSize="num"
+      ></paging>
     </div>
   </div>
 </template>
@@ -153,7 +153,7 @@ export default {
 }
 /*树形控件的div*/
 .mailListName-box {
-  width: 15%;
+  width: 18%;
   margin-left: 2%;
 }
 /*暂无数据提示*/
@@ -175,20 +175,23 @@ export default {
 }
 /*员工头像*/
 .mailListData-loop-img {
-  height: 90px;
-  width: 90px;
+  height: 80px;
+  width: 80px;
   border-radius: 50%;
   text-align: center;
-  line-height: 90px;
+  line-height: 80px;
   color: white;
+  margin-top: 15px;
+  margin-left: 15px;
   /*margin: 15px;*/
 }
 /*循环的div*/
 .mailListData-loop-box {
   width: 32%;
-  background-color: white;
-  margin-bottom: 20px;
+  height:301px ;
+  margin-bottom: 10px;
   margin-right: 1%;
+  /*border: gray solid 1px;*/
 }
 /*名字、img*/
 .mailListData-loop-box1 {
@@ -199,7 +202,8 @@ export default {
 /*循环的名字div*/
 .mailListData-loop-name {
   margin-left: 15px;
-  margin-top: 10px;
+  margin-top: 23px;
+  font-size: 14px;
 }
 /*个性标签*/
 .label-box {
@@ -207,21 +211,27 @@ export default {
 }
 /*人员信息*/
 .personnel-information {
-  margin-top: 20px;
+  margin: 20px 0px 20px 20px;
 }
 /*标签内容*/
 .label-loop-box1 {
   height: 20px;
-  font-size: 14px;
+  font-size: 12px;
+  line-height: 20px;
   border-radius: 10px;
-  padding: 2px 11px;
+  padding: 0px 11px;
   color: white;
-  margin-right: 6px;
-  margin-top: 4px;
+  margin-right: 5px;
+  margin-top: 5px;
 }
 /*添加标签提示*/
 .label-Tips {
   font-size: 14px;
   color: gray;
+}
+/*分页*/
+.paging-box {
+  margin-left: 20%;
+  padding-bottom: 20px;
 }
 </style>

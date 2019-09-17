@@ -10,7 +10,10 @@ import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import VCharts from "v-charts";
 import clipboard from "clipboard";
+import Print from './plugs/print' // 引入附件的js文件
 
+
+Vue.use(Print) // 注册
 Vue.use(VCharts);
 Vue.use(ElementUI);
 Vue.prototype.$axios = http;

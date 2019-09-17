@@ -16,14 +16,29 @@
           </el-dropdown-menu>
         </el-dropdown>
         <img src="../../images/header.jpg" alt="" class="header-img" />
-        <el-dropdown>
+        <el-dropdown @command="handCommand2">
           <span class="el-dropdown-link">
             亲爱的:{{ user.username
             }}<i class="el-icon-caret-bottom el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
             <div v-for="(item1, index1) in downData" :key="index1">
-              <el-dropdown-item>{{ item1.name }}</el-dropdown-item>
+              <div v-if="index1 === 0">
+                <el-upload
+                  class="upload-demo"
+                  action="https://jsonplaceholder.typicode.com/posts/"
+                  :show-file-list="false"
+                  :on-success="onSuccess"
+                  :before-upload="beforeUpload"
+                >
+                  <el-dropdown-item>{{ item1.name }}</el-dropdown-item>
+                </el-upload>
+              </div>
+              <div v-else-if="index1 > 0">
+                <el-dropdown-item :command="index1">{{
+                  item1.name
+                }}</el-dropdown-item>
+              </div>
             </div>
           </el-dropdown-menu>
         </el-dropdown>
@@ -64,7 +79,33 @@ export default {
       ]
     };
   },
-  methods: {},
+  methods: {
+    handCommand2(command) {
+      if (command === 1) {
+        console.log(command);
+      } else if (command === 2) {
+        this.$axios
+          .req("api/users/logout")
+          .then(res => {
+            if (res.code === 200) {
+              localStorage.removeItem("user");
+              this.$message({
+                message: "退出登录",
+                type: "success"
+              });
+              this.$router.push("/login");
+            }
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      }
+    },
+    onSuccess(file) {
+      console.log(file);
+    },
+    beforeUpload() {}
+  },
   mounted() {
     this.user = JSON.parse(localStorage.getItem("user"));
   },

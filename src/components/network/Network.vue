@@ -5,21 +5,20 @@
     </div>
     <div class="content-box">
       <el-table :data="websiteData" style="width: 100%">
-        <el-table-column prop="title" label="问卷名称" width="180" align="center">
+        <el-table-column prop="title" label="问卷名称"  align="center">
         </el-table-column>
-        <el-table-column prop="content" label="问卷描述" width="180" align="center">
+        <el-table-column prop="content" label="问卷描述" align="center">
         </el-table-column>
         <el-table-column
           prop="creationTime"
           label="创建时间"
           sortable
-          width="180"
           align="center"
         >
         </el-table-column>
-        <el-table-column prop="deadline" label="截止时间" sortable width="180" align="center">
+        <el-table-column prop="deadline" label="截止时间" sortable align="center">
         </el-table-column>
-        <el-table-column prop="topic" label="问卷主题" width="180" align="center">
+        <el-table-column prop="topic" label="问卷主题" align="center">
           <template slot-scope="scope">
             <el-tag type="primary" disable-transitions>{{
               scope.row.topic
@@ -29,7 +28,6 @@
         <el-table-column
           prop="websiteName"
           label="网站名称"
-          width="180"
           filter-placement="bottom-end"
           align="center"
         >
@@ -70,7 +68,7 @@
       </el-table>
     </div>
     <div>
-      <el-dialog title="复制地址" :visible.sync="dialogFormVisible" @opened="showQRCode">
+      <el-dialog title="复制地址" :visible.sync="dialogFormVisible" @opened="showQRCode" width="60%">
         <el-form>
           <el-form-item>
             <div class="content-box1">
@@ -80,7 +78,7 @@
                 data-clipboard-action="copy"
                 :data-clipboard-text="website"
                 class="cobyDomObj"
-                @click="copyLink"
+                @click.once="copyLink"
                 >复制</el-button
               >
             </div>
@@ -217,8 +215,8 @@ export default {
     },
     qrcode() {
       let qrcode = new QRCode(this.$refs.qrCodeDiv, {
-        width: 200,
-        height: 200, // 高度  [图片上传失败...(image-9ad77b-1525851843730)]
+        width: 150,
+        height: 150, // 高度  [图片上传失败...(image-9ad77b-1525851843730)]
         text: this.website, // 二维码内容
         // render: "canvas", // 设置渲染方式（有两种方式 table和canvas，默认是canvas）
         background: "#ffffff",

@@ -1,6 +1,19 @@
+//薪酬管理的上月预算input框
 .payLastPlanInput {
   .el-input__inner {
     text-align: center !important;
     border: 0px !important;
+  }
+}
+//分布表单的步骤提示
+.stepForm_tips_description{
+  .el-step__description{
+    margin-top: 10px !important;
+    font-size: 14px !important;
+  }
+}
+.home_el_style{
+  .el-main{
+    padding-top: 0px !important;
   }
 }
