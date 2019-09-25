@@ -45,6 +45,7 @@
                 v-model="scope.row.title"
                 v-if="scope.row.isInput1 === true"
                 @blur="inputBlur1(scope)"
+                @keyup.enter.native="KeyboardEvents1(scope)"
                 placeholder="请输入内容"
               ></el-input>
               <div
@@ -61,6 +62,7 @@
                 v-model="scope.row.plan"
                 v-if="scope.row.isInput2 === true"
                 @blur="inputBlur2(scope)"
+                @keyup.enter.native="KeyboardEvents2(scope)"
                 placeholder="请输入内容"
               ></el-input>
               <div
@@ -77,6 +79,7 @@
                 v-model="scope.row.actual"
                 v-if="scope.row.isInput3 === true"
                 @blur="inputBlur3(scope)"
+                @keyup.enter.native="KeyboardEvents3(scope)"
                 placeholder="请输入内容"
               ></el-input>
               <div
@@ -162,7 +165,6 @@ export default {
       this.$axios.req("api/pay").then(res => {
         if (res) {
           this.payDAta = res.data;
-          console.log(this.payDAta);
         }
       });
     },
@@ -200,6 +202,16 @@ export default {
       });
       return sums;
     },
+    // enter键盘事件
+    KeyboardEvents1(scope) {
+      this.inputBlur1(scope);
+    },
+    KeyboardEvents2(scope) {
+      this.inputBlur2(scope);
+    },
+    KeyboardEvents3(scope) {
+      this.inputBlur3(scope);
+    },
     //input失去焦点事件
     inputBlur1(scope) {
       if (scope.row.title === "") {
@@ -214,7 +226,6 @@ export default {
           type: "success"
         });
       }
-      console.log(scope);
     },
     inputBlur2(scope) {
       if (scope.row.plan === "") {

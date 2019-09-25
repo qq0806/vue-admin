@@ -17,7 +17,7 @@
             <el-input v-model="form.username" style="width: 260px;"></el-input>
           </el-form-item>
 
-          <el-form-item label="请输邮箱" prop="email">
+          <el-form-item label="请输入邮箱" prop="email">
             <el-input
               v-model="form.email"
               style="width: 260px;"
@@ -25,14 +25,16 @@
             ></el-input>
           </el-form-item>
         </el-form>
-      </div>
-      <div class="Retrieve-button-box">
-        <el-row>
-          <el-button type="primary" @click="login">立即登录</el-button>
-        </el-row>
-        <el-row>
-          <el-button type="primary" @click="Retrieve">找回密码</el-button>
-        </el-row>
+        <div class="Retrieve-button-box">
+          <el-row>
+            <el-button type="primary" @click="login">立即登录</el-button>
+          </el-row>
+          <el-row>
+            <el-button type="primary" @click="Retrieve(form)"
+              >找回密码</el-button
+            >
+          </el-row>
+        </div>
       </div>
     </div>
   </div>
@@ -71,30 +73,37 @@ export default {
       this.$router.push("/login");
     },
     // 找回密码
-    Retrieve() {
-      this.$axios
-        .req("api/users/findPwd", {
-          username: this.form.username,
-          email: this.form.email
-        })
-        .then(res => {
-          if (res.code === 200) {
-            this.$message({
-              message: "邮件发送成功",
-              type: "success"
-            });
-            this.$router.push("/login")
-          } else if (res.code === 500) {
-            this.$message({
-              message: "用户不存在",
-              type: "error"
-            });
-          }
-          console.log(res);
-        })
-        .catch(e => {
-          console.log(e);
+    Retrieve(form) {
+      if (form.username === "" || form.email === "") {
+        this.$message({
+          showClose: true,
+          message: "输入框不能为空",
+          type: "warning"
         });
+      } else {
+        this.$axios
+          .req("api/users/findPwd", {
+            username: this.form.username,
+            email: this.form.email
+          })
+          .then(res => {
+            if (res.code === 200) {
+              this.$message({
+                message: "邮件发送成功",
+                type: "success"
+              });
+              this.$router.push("/login");
+            } else if (res.code === 500) {
+              this.$message({
+                message: "用户不存在",
+                type: "error"
+              });
+            }
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      }
     }
   },
   mounted() {},
@@ -125,11 +134,13 @@ export default {
   width: 100%;
   text-align: center;
   margin: 20px 0px;
+  color: gray;
 }
 /*找回密码的内容*/
 .Retrieve-content-box {
   height: 260px;
-  background-color: #fff;
+  /*background-color: #fff;*/
+  background-rgba: (0, 0, 0, 0.3);
 }
 /*输入框*/
 .Retrieve-content-form {
@@ -145,5 +156,8 @@ export default {
   margin-top: 20px;
   display: flex;
   justify-content: space-evenly;
+}
+.el-form-item__label {
+  color: white;
 }
 </style>

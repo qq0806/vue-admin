@@ -19,6 +19,8 @@
     "v-charts": "^1.19.0",
     "vue": "^2.6.10",
     "vue-count-to": "^1.0.13",
+    "vue-i18n": "^8.14.1",
+    "vue-lunar-full-calendar": "^1.2.7",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"
   },

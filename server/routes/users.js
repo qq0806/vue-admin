@@ -6,13 +6,15 @@ const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const rp = require("request-promise");
 const fetch = require("node-fetch");
-// const {msgKey, emailPass, clientId, clientSecret, scope} = require('../config')
 const {
   tokenSecret,
   telId,
   apiKey,
   QQMailbox,
-  QQAuthorizationCode
+  QQAuthorizationCode,
+  scope,
+  clientID,
+  clientSecret
   // scope
 } = require("../config");
 
@@ -114,7 +116,7 @@ router.post("/login", async ctx => {
     }
   } else {
     ctx.body = {
-      code: 500,
+      code: 501,
       data: null,
       msg: "验证码不正确"
     };
@@ -222,7 +224,6 @@ router.post("/findPwd", async ctx => {
     };
   }
 });
-
 // 获取全部用户
 router.get("/allUser", async ctx => {
   let user = await User.find();
@@ -280,66 +281,66 @@ router.get("/logout", async ctx => {
 });
 
 // github登录
-// router
-//   .get("/githubLogin", async ctx => {
-//     let dataStr = new Date().valueOf();
-//     //重定向到认证接口,并配置参数
-//     let path = "https://github.com/login/oauth/authorize";
-//     path += "?client_id=" + clientId;
-//     path += "&scope=" + scope;
-//     path += "&state=" + dataStr;
-//     //转发到授权服务器
-//     ctx.redirect(path);
-//   })
-//   .get("/auth", async ctx => {
-//     const code = ctx.query.code;
-//     let path = "https://github.com/login/oauth/access_token";
-//     const params = {
-//       client_id: clientId,
-//       client_secret: clientSecret,
-//       code: code
-//     };
-//     await fetch(path, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       body: JSON.stringify(params)
-//     })
-//       .then(res => {
-//         return res.text();
-//       })
-//       .then(body => {
-//         const args = body.split("&");
-//         let arg = args[0].split("=");
-//         const access_token = arg[1];
-//         return access_token;
-//       })
-//       .then(async token => {
-//         const url = " https://api.github.com/user?access_token=" + token;
-//         await fetch(url)
-//           .then(res => {
-//             return res.json();
-//           })
-//           .then(res => {
-//             ctx.session.githubUser = res;
-//             ctx.redirect(`http://localhost:9527`);
-//           });
-//       })
-//       .catch(e => {
-//         console.log(e);
-//       });
-//   });
+router
+  .get("/githubLogin", async ctx => {
+    let dataStr = new Date().valueOf();
+    //重定向到认证接口,并配置参数
+    let path = "https://github.com/login/oauth/authorize";
+    path += "?client_id=" + clientID;
+    path += "&scope=" + scope;
+    path += "&state=" + dataStr;
+    //转发到授权服务器
+    ctx.redirect(path);
+  })
+  .get("/auth", async ctx => {
+    const code = ctx.query.code;
+    let path = "https://github.com/login/oauth/access_token";
+    const params = {
+      client_id: clientID,
+      client_secret: clientSecret,
+      code: code
+    };
+    await fetch(path, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(params)
+    })
+      .then(res => {
+        return res.text();
+      })
+      .then(body => {
+        const args = body.split("&");
+        let arg = args[0].split("=");
+        const access_token = arg[1];
+        return access_token;
+      })
+      .then(async token => {
+        const url = " https://api.github.com/user?access_token=" + token;
+        await fetch(url)
+          .then(res => {
+            return res.json();
+          })
+          .then(res => {
+            ctx.session.githubUser = res;
+            ctx.redirect(`http://localhost:8080`);
+          });
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  });
 
 // 获取github登录的用户
-// router.get("/githubUser", async ctx => {
-//   if (ctx.session.githubUser) {
-//     ctx.body = {
-//       code: 200,
-//       msg: "success",
-//       data: ctx.session.githubUser
-//     };
-//   }
-// });
+router.get("/githubUser", async ctx => {
+  if (ctx.session.githubUser) {
+    ctx.body = {
+      code: 200,
+      msg: "success",
+      data: ctx.session.githubUser
+    };
+  }
+});
 
 module.exports = router;

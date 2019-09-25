@@ -154,6 +154,8 @@ router.beforeEach((to, from, next) => {
   } else {
     next("/login");
   }
-  // if ()
+  if (to.matched[0].meta.title) {
+    document.title = to.matched[0].meta.title;
+  }
 });
 export default router;

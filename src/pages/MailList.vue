@@ -92,9 +92,9 @@ export default {
         children: "children",
         label: "label"
       },
-      num: 30, //每页多少条初始化数据
+      num: 15, //每页多少条初始化数据
       currentPage: 1, //多少页
-      pageSizesArr1: [30, 60, 90, 200] //一页多少条选择数据
+      pageSizesArr1: [15, 30, 60, 90, 200] //一页多少条选择数据
     };
   },
   methods: {
@@ -106,7 +106,6 @@ export default {
         });
         this.mailListData = arr;
       }
-      console.log(data);
     },
     // 获取通讯录数据
     getMailListData() {
@@ -150,6 +149,7 @@ export default {
 .mailList-content-box {
   padding-top: 80px;
   display: flex;
+  align-items: flex-start; //在flex容器的当前行的侧轴（纵轴）方向上的对齐方式.避免树状图全部点开时,由于渲染数据过少时,出现的元素之间height和定义值不一样
 }
 /*树形控件的div*/
 .mailListName-box {
@@ -188,7 +188,7 @@ export default {
 /*循环的div*/
 .mailListData-loop-box {
   width: 32%;
-  height:301px ;
+  height: 301px;
   margin-bottom: 10px;
   margin-right: 1%;
   /*border: gray solid 1px;*/
@@ -203,7 +203,7 @@ export default {
 .mailListData-loop-name {
   margin-left: 15px;
   margin-top: 23px;
-  font-size: 14px;
+  font-size: 13px;
 }
 /*个性标签*/
 .label-box {

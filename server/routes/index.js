@@ -64,6 +64,28 @@ router.post("/delCalendar", async ctx => {
 
 //加载koa-multer模块
 //文件上传
+
+//修改用户头像
+router.post("/updateImg", async ctx => {
+  let { id, imgUrl } = ctx.request.body;
+  let res = await User.findByIdAndUpdate(id, {
+    imageUrl: imgUrl
+  });
+  if (res) {
+    ctx.body = {
+      code: 200,
+      msg: "修改成功",
+      data: res
+    };
+  } else {
+    ctx.body = {
+      code: 500,
+      msg: "修改失败",
+      data: null
+    };
+  }
+});
+
 //配置
 let storage = multer.diskStorage({
   //文件保存路径

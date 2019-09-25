@@ -22,6 +22,7 @@
                 v-model="form.password"
                 style="width: 200px;"
                 type="password"
+                show-password
               ></el-input>
             </el-form-item>
             <div @click="forget">
@@ -45,14 +46,24 @@
             ></div>
           </div>
         </el-form>
+        <div class="login-button-box">
+          <el-row>
+            <el-button type="primary" @click="loginClick(form)"
+              >立即登录</el-button
+            >
+          </el-row>
+          <el-row>
+            <el-button type="primary" @click="registerClick"
+              >立即注册</el-button
+            >
+          </el-row>
+        </div>
       </div>
-      <div class="login-button-box">
-        <el-row>
-          <el-button type="primary" @click="loginClick">立即登录</el-button>
-        </el-row>
-        <el-row>
-          <el-button type="primary" @click="registerClick">立即注册</el-button>
-        </el-row>
+      <div class="login-github-box">
+        <a href="api/users/githubLogin" @click="githubLogin">
+          <img src="../../images/github.png" alt="" class="github-img" />
+          <div class="github-style">Github登录</div>
+        </a>
       </div>
     </div>
   </div>
@@ -103,38 +114,65 @@ export default {
     // 忘记密码
     forget() {
       this.$router.push("/retrieve");
-      console.log(1234566554);
     },
     // 登录按钮
-    loginClick() {
+    loginClick(form) {
+      if (form.username === "" || form.password === "" || form.code === "") {
+        this.$message({
+          showClose: true,
+          message: "输入框不能为空",
+          type: "warning"
+        });
+      } else {
+        this.$axios
+          .req("api/users/login", {
+            username: this.form.username,
+            password: this.form.password,
+            code: this.form.code
+          })
+          .then(res => {
+            if (res.code === 501) {
+              this.$message({
+                message: "验证码错误",
+                type: "error"
+              });
+              this.getVerificationCode();
+            } else if (res.code === 200) {
+              this.$message({
+                message: "登录成功",
+                type: "success"
+              });
+              localStorage.setItem("user", JSON.stringify(res.data));
+              this.$router.push("/");
+            } else if (res.code === 500) {
+              this.$message({
+                message: "用户不存在或密码错误",
+                type: "error"
+              });
+            }
+            // console.log(res);
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      }
+    },
+    // 注册按钮
+    registerClick() {
+      this.$router.push("/register");
+    },
+    // github登录
+    githubLogin() {
       this.$axios
-        .req("api/users/login", {
-          username: this.form.username,
-          password: this.form.password,
-          code: this.form.code
-        })
+        .req("api/users/githubUser")
         .then(res => {
           if (res.code === 200) {
-            this.$message({
-              message: "登录成功",
-              type: "success"
-            });
             localStorage.setItem("user", JSON.stringify(res.data));
-            this.$router.push("/");
-          } else if (res.code === 500) {
-            this.$message({
-              message: "用户不存在",
-              type: "error"
-            });
           }
         })
         .catch(e => {
           console.log(e);
         });
-    },
-    // 注册按钮
-    registerClick() {
-      this.$router.push("/register");
     }
   },
   mounted() {
@@ -164,15 +202,16 @@ export default {
 }
 /*登录内容*/
 .login-content-box {
-  height: 340px;
+  height: 450px;
   width: 560px;
-  background-color: #fff;
+  background-rgba: (0, 0, 0, 0.3);
 }
 /*内容的标题*/
 .login-content-title {
   width: 100%;
   text-align: center;
   margin: 20px 0px;
+  color: gray;
 }
 
 /*输入框*/
@@ -200,5 +239,20 @@ export default {
   margin-top: 40px;
   display: flex;
   justify-content: space-evenly;
+}
+.login-github-box {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+/*github图标*/
+.github-img {
+  height: 50px;
+  width: 50px;
+}
+/*取消a标签默认样式*/
+a {
+  text-decoration: none;
+  color: #000;
 }
 </style>

@@ -193,6 +193,7 @@ export default {
         this.website = "https://github.com/";
       }
     },
+    //复制
     copyLink() {
       let _this = this;
       let clipboardObj = new this.clipboard(".cobyDomObj");

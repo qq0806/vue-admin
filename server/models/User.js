@@ -27,8 +27,9 @@ const UserSchema = new Schema({
     default: Date.now
   },
   //头像
-  avatar: {
-    type: String
+  imageUrl: {
+    type: String,
+    default: null
   }
 });
 

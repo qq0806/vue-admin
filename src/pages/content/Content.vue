@@ -53,9 +53,9 @@ export default {
   margin: 0px;
 }
 @import "../../style/common";
-.el-main {
-  padding: 0px;
-}
+/*.el-main {*/
+/*  padding: 0px;*/
+/*}*/
 .crumbs-box {
   position: relative;
 }

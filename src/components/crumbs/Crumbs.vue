@@ -42,7 +42,9 @@ export default {
       this.$store.state.isCollapse1 = false;
     }
   },
-  mounted() {},
+  mounted() {
+    this.routeName = JSON.parse(localStorage.getItem("routeNames"));
+  },
   created() {},
   filters: {},
   computed: {
@@ -61,6 +63,7 @@ export default {
         //   this.routePath = val.matched[1].path;
         // }
         this.routeName = val.matched[0].meta.title;
+        localStorage.setItem("routeNames", JSON.stringify(this.routeName));
         this.routePath = val.matched[1].path;
         // console.log(this.routeName);
         // console.log(this.routePath);

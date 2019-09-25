@@ -252,6 +252,8 @@ export default {
             } else {
               this.noShow = false;
             }
+          } else if (res.code === 500) {
+            this.noShow = true;
           }
         })
         .catch(e => {
@@ -393,6 +395,7 @@ export default {
 .cityDynamic-no-data {
   margin-top: 20px;
   margin-left: 20px;
+  color: skyblue;
 }
 
 /*个人动态的进度条样式*/

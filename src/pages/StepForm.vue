@@ -44,7 +44,10 @@
               <el-input v-model="ruleForm.receivablesName"></el-input>
             </el-form-item>
             <el-form-item label="收款金额" prop="money">
-              <el-input v-model="ruleForm.money"></el-input>
+              <div class="money-img-box">
+                <el-input v-model="ruleForm.money"></el-input>
+                <img src="../images/money.png" alt="" class="money-img" />
+              </div>
             </el-form-item>
           </el-form>
           <el-button
@@ -113,7 +116,10 @@
           <div class="stepForm-StepBar-end1">
             <div class="stepForm-StepBar-end-img">
               <div class="end-img-background">
-                <i class="el-icon-check" style="color:white;font-size: 40px;margin-top: 10px" ></i>
+                <i
+                  class="el-icon-check"
+                  style="color:white;font-size: 40px;margin-top: 10px"
+                ></i>
               </div>
             </div>
             <div>操作成功</div>
@@ -326,6 +332,19 @@ export default {
   background-color: white;
   margin: 30px auto;
 }
+.money-img-box {
+  position: relative;
+}
+.money-img {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  /*margin-top: -10px;*/
+  /*transform: translate(-50%, -50%);*/
+  transform: translateY(-10px);
+}
 
 .stepForm-StepBar-end1 {
   width: 40%;
@@ -339,19 +358,21 @@ export default {
   align-items: center;
   margin-bottom: 20px;
 }
-
+/*结束图片背景*/
 .end-img-background {
   height: 60px;
   width: 60px;
   border-radius: 50%;
   background-color: #50c324;
 }
+/*预计提示*/
 .Estimate-box {
   font-size: 12px;
   color: gray;
   margin-top: 5px;
   padding-bottom: 10px;
 }
+/*转账完成提示框*/
 .stepForm-StepBar-end-button {
   width: 50%;
   margin: auto;

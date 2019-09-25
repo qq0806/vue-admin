@@ -8,5 +8,7 @@ module.exports = {
   tokenSecret: "csqxiaoxiao",
   QQMailbox: "2536867143@qq.com", //qq邮箱
   QQAuthorizationCode: "wsmrkpxximsneaic", //qq邮箱授权码
-  scope: ['user']
-}
+  clientID: "d30fdd83a81f03b4768e", //githubID
+  clientSecret: "a842005053a94f46baaed74002330d95bad94b92",
+  scope: ["user"]
+};

@@ -58,6 +58,7 @@
           >
           </circle-progress>
           <div v-if="index < 2">|</div>
+          <div v-else-if="index === 2"></div>
         </div>
       </div>
     </div>
@@ -178,8 +179,32 @@ export default {
   },
   created() {},
   filters: {},
-  computed: {},
-  watch: {},
+  computed: {
+    // 监听语言切换
+    languageData() {
+      return this.$i18n.locale;
+    }
+  },
+  watch: {
+    languageData(val) {
+      if (val === "tcc") {
+        this.$i18n.locale = "tcc";
+        this.titleData[0].name = this.$t("message.name1");
+        this.titleData[1].name = this.$t("message.name2");
+        this.titleData[2].name = this.$t("message.name3");
+      } else if (val === "en") {
+        this.$i18n.locale = "en";
+        this.titleData[0].name = this.$t("message.name1");
+        this.titleData[1].name = this.$t("message.name2");
+        this.titleData[2].name = this.$t("message.name3");
+      } else if (val === "zh") {
+        this.$i18n.locale = "zh";
+        this.titleData[0].name = this.$t("message.name1");
+        this.titleData[1].name = this.$t("message.name2");
+        this.titleData[2].name = this.$t("message.name3");
+      }
+    }
+  },
   directives: {}
 };
 </script>

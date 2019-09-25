@@ -13,7 +13,7 @@
         </div>
         <div class="no-print printing-button-box">
           <el-button type="primary" @click="printingReturn"
-            >返回账单页</el-button
+            >返回表单页</el-button
           >
           <el-button type="success" @click="printBills">打印</el-button>
         </div>
@@ -48,11 +48,11 @@ export default {
     this.receivables1 = this.$route.query.receivables1;
     this.receivablesName1 = this.$route.query.receivablesName1;
     this.money1 = this.$route.query.money1;
-    console.log(this.$route.query);
-    console.log(this.name1);
-    console.log(this.receivables1);
-    console.log(this.receivablesName1);
-    console.log(this.money1);
+    // console.log(this.$route.query);
+    // console.log(this.name1);
+    // console.log(this.receivables1);
+    // console.log(this.receivablesName1);
+    // console.log(this.money1);
   },
   created() {},
   filters: {},
